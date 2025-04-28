@@ -15,6 +15,7 @@ app.get("/", (req, res) => {
   res.send("Welcome to the Home Page!"); // Send a response back to the client
 });
 app.use("/api/vi.auth" , authrouters)
+app.use("/api/v1/problems",problemRoutes)
 
 // Start the server
 app.listen(port, () => {
