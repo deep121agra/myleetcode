@@ -62,17 +62,17 @@ export const login=async(req,res)=>{
       }
      })
      if(!user){
-      return res.staus(401).json({
+      return res.status(401).json({
         error:"User not found"
       })
      }
      const isMatch=await bcrypt.compare(password,user.password);
      if(!isMatch){
-        return res.staus(400).json({
+        return res.status(400).json({
           error:"Password does not match"
         })
      }
-     const token=JsonWebTokenError.sign({id:user.id},process.env.JWT_SECRET,{
+     const token=jwt.sign({id:user.id},process.env.JWT_SECRET,{
       expiresIn:"7d"
      })
      res.cookie("jwt",token,{
@@ -83,7 +83,8 @@ export const login=async(req,res)=>{
     })
 
     res.status(201).json({
-      message:"User created successfullt",
+      success:true,
+      message:"login successfullt",
       user:{
         id:user.id,
         email:user.email,
@@ -97,7 +98,7 @@ export const login=async(req,res)=>{
   }
   catch(error){
     console.error("Error creating user",error);
-    res.staus(500).json({
+    res.status(500).json({
       error:"Error creating user"
     })
   }
