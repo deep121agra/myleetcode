@@ -27,6 +27,17 @@ export  const  executecode=async(req,res)=>{
       language_id,
       stdin: input,
     }));
+    
+
+   // yei sare kei sare problem judge zero kay bejgnege
+        const submitResopose=await submitBatch(submissions) ;
+        const tokens=submitResopose.map((res)=>res.token);
+        const results=await pollBatchResults(tokens);
+
+        console.log(`results -------`);
+        console.log(results);
+
+
   }
   catch(error){
     console.log(error)
