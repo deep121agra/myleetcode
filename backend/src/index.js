@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser"
 import authrouters from "./routes/auth.routers.js";
 import problemRoutes from "./routes/problem.routes.js";
 import executionRoutes from "./routes/executionRoutes.js";
+import submissionRoute from "./routes/submission.routes.js";
 
 dotenv.config(); // Load environment variables from .env file
 
@@ -20,6 +21,7 @@ app.get("/", (req, res) => {
 app.use("/api/v1/auth" , authrouters)
 app.use("/api/v1/problems",problemRoutes)
 app.use("/api/v1/execution",executionRoutes)
+app.use("/api/v1/submission",submissionRoute)
 
 // Start the server
 app.listen(port, () => {
